@@ -7,24 +7,31 @@ Halo! Repositori ini saya buat khusus untuk memenuhi tugas **Ujian Tengah Semest
 ## Cerita di Balik Dataset
 Dataset yang saya gunakan berasal dari Kaggle, yaitu `oranges-vs-grapefruit`. Masalah utamanya adalah bagaimana komputer bisa membedakan dua jenis buah yang secara fisik mirip jika hanya dilihat dari data angka. Fitur-fitur yang saya manfaatkan meliputi dimensi fisik (diameter dan berat) serta intensitas warna (Red, Green, Blue).
 
-## Tahapan Pengerjaan Model
+## Metodologi Pengerjaan (Step-by-Step)
 
-### 1. Eksplorasi dan Pembersihan Data (Preprocessing)
-Langkah awal tentu saja "berkenalan" dengan datanya. Karena komputer hanya paham angka, saya melakukan beberapa penyesuaian:
-* **Label Encoding:** Mengubah kolom target `name` dari tekstual menjadi numerik (0 untuk Orange dan 1 untuk Grapefruit).
-* **Feature Scaling:** Ini bagian krusial. Karena rentang nilai berat (ratusan gram) jauh berbeda dengan diameter (satuan cm), saya menggunakan `StandardScaler` agar algoritma tidak "pilih kasih" terhadap fitur tertentu.
-* **Splitting Data:** Saya membagi dataset dengan rasio **80:20**. Sebanyak 80% data digunakan untuk model belajar, dan 20% sisanya disimpan sebagai ujian akhir model (testing).
+Proses pembangunan model ini mengikuti standar *Machine Learning Pipeline* untuk memastikan hasil yang objektif. Berikut adalah detail dari setiap tahapan yang saya lakukan:
 
-### 2. Implementasi Tiga Algoritma Utama
-Dalam UTS ini, saya membandingkan tiga "pendekar" algoritma klasifikasi dengan karakteristik yang berbeda-beda:
+### 1. Data Preprocessing (Pondasi Model)
+Tahap ini adalah yang paling menentukan. Jika datanya kotor, model secanggih apa pun akan memberikan hasil yang buruk (*Garbage In, Garbage Out*).
 
-* **Decision Tree:** Bekerja seperti alur pohon keputusan. Sangat intuitif karena kita bisa melihat bagaimana model mengambil keputusan berdasarkan fitur yang paling dominan.
-* **Naive Bayes (GaussianNB):** Mengandalkan teori probabilitas. Meskipun tergolong simpel dan mengasumsikan antar fitur tidak saling berhubungan, kecepatannya dalam memproses data sangat luar biasa.
-* **Support Vector Machine (SVM):** Model ini mencoba mencari garis pemisah (*hyperplane*) paling optimal di antara kedua kelas. Dengan bantuan scaling yang tepat, SVM biasanya menjadi yang paling tangguh dalam akurasi.
+* **Label Encoding:** Karena komputer tidak memahami teks, variabel target `name` diubah menjadi numerik: **0** untuk `orange` dan **1** untuk `grapefruit`.
+* **Feature Scaling (Standardization):** Ini adalah langkah kritis, terutama untuk model berbasis jarak seperti SVM. Saya menggunakan `StandardScaler` untuk mengubah distribusi data sehingga memiliki rata-rata 0 dan standar deviasi 1. Tanpa ini, fitur `weight` yang bernilai ratusan akan mendominasi fitur `diameter` yang bernilai belasan.
+* **Dataset Splitting:** Data dibagi dengan rasio **80:20** (80% untuk *training* dan 20% untuk *testing*) guna memastikan model diuji pada data yang benar-benar baru.
 
-### 3. Evaluasi dan Perbandingan
-Setelah ketiga model dilatih, saya menguji mereka menggunakan data testing. Metrik yang saya perhatikan bukan cuma **Accuracy**, tapi juga **Precision, Recall,** dan **F1-Score** untuk memastikan model tidak hanya menebak secara beruntung.
+### 2. Implementasi & Arsitektur Algoritma
+Saya membandingkan tiga pendekatan algoritma yang berbeda untuk melihat mana yang paling cocok dengan pola data citrus:
 
+* **Decision Tree:** Algoritma berbasis pohon keputusan yang membelah data berdasarkan *Information Gain*. Sangat intuitif dalam menangkap hubungan non-linear antar fitur fisik.
+* **Naive Bayes (GaussianNB):** Menggunakan pendekatan probabilitas statistik. Meskipun mengasumsikan setiap fitur tidak saling berhubungan, model ini sangat cepat dan efisien untuk dataset yang relatif sederhana.
+* **Support Vector Machine (SVM):** Algoritma yang mencari *Optimal Hyperplane* (garis pemisah) dengan margin maksimal. SVM sangat tangguh dalam memisahkan data yang memiliki batasan kelas yang kompleks.
+
+### 3. Evaluasi Multi-Metrik
+Saya tidak hanya mengandalkan **Accuracy**, karena akurasi bisa menipu jika data tidak seimbang. Oleh karena itu, saya menggunakan metrik tambahan:
+1.  **Precision:** Ketepatan prediksi positif (menghindari salah tebak jeruk sebagai anggur).
+2.  **Recall:** Kemampuan model menemukan seluruh data kelas tertentu (menghindari jeruk yang tidak terdeteksi).
+3.  **F1-Score:** Rata-rata harmonik antara Precision dan Recall sebagai metrik keseimbangan performa model.
+
+---
 ---
 
 ## Hasil Eksperimen (Screenshots)
