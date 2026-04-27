@@ -1,6 +1,6 @@
 # UTS Machine Learning: Klasifikasi Buah Citrus (Jeruk vs Anggur)
 
-Halo! Repositori ini saya buat khusus untuk memenuhi tugas **Ujian Tengah Semester (UTS)** pada mata kuliah Machine Learning. Di sini, saya mendokumentasikan proses eksperimen sederhana namun sistematis dalam membangun model klasifikasi untuk membedakan antara buah jeruk (*Orange*) dan anggur (*Grapefruit*).
+Repositori ini saya buat khusus untuk memenuhi tugas **Ujian Tengah Semester (UTS)** pada mata kuliah Machine Learning. Di sini, saya mendokumentasikan proses eksperimen sederhana namun sistematis dalam membangun model klasifikasi untuk membedakan antara buah jeruk (*Orange*) dan anggur (*Grapefruit*).
 
 ---
 
