@@ -32,7 +32,7 @@ Setelah ketiga model dilatih, saya menguji mereka menggunakan data testing. Metr
 Berikut adalah dokumentasi hasil eksekusi program yang menunjukkan performa dari masing-masing algoritma:
 
 ### 1. Evaluasi Model Decision Tree
-![Screenshot Decision Tree](Screenshot 2026-04-27 110908.png)
+![Screenshot Decision Tree](hasil_decision_tree.png)
 *Output klasifikasi menggunakan Decision Tree. Terlihat bagaimana akurasi yang dihasilkan dari pembagian data secara hierarkis.*
 
 ### 2. Evaluasi Model Naive Bayes
